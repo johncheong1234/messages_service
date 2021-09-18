@@ -15,7 +15,7 @@ exports.create = (req, res) => {
     }
     // Create a message
     const message = {
-      message: req.body.message,
+      message_text: req.body.message,
       sender: req.body.sender,
       receiver: req.body.receiver,
       
