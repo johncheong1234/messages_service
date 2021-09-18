@@ -1,6 +1,7 @@
 const db = require("../models");
 const messages = db.messages;
 const Op = db.Sequelize.Op;
+const crypto = require("crypto");
 
 // Create and Save a new message
 exports.create = (req, res) => {
