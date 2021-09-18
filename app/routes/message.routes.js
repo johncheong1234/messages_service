@@ -19,7 +19,10 @@ module.exports = app => {
     router.put("/:id", messages.update);
   
     // Delete a message with id
-    router.delete("/:randomid", messages.delete);
+    // router.delete("/:randomid", messages.delete);
+
+    // Delete a message with randomid
+    router.delete("/delete/:randomid",messages.delete);
   
     // Delete all messages
     router.delete("/", messages.deleteAll);
