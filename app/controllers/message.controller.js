@@ -33,7 +33,7 @@ exports.create = (req, res) => {
       message['randomid'] = buf.toString('hex')
       if(message['randomid']){
         // Save message in the database
-        messages.create(message, { fields: ['message', 'sender','receiver','randomid'] })
+        messages.create(message, { fields: ['message_text', 'sender','receiver','randomid'] })
         .then(data => {
           res.send(data);
         })
