@@ -26,6 +26,9 @@ module.exports = app => {
   
     // Delete all messages
     router.delete("/", messages.deleteAll);
+
+    //Get messages by name
+    router.get("/:name",messages.findAllbyName);
   
     app.use('/api/messages', router);
   };

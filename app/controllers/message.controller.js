@@ -84,6 +84,21 @@ exports.findAll = (req, res) => {
       });
   };
 
+exports.findAllbyName = (req,res)=>{
+  var sender = req.params.name;
+  var receiver = req.params.name;
+  messages.findAllbyName({where: {sender: sender, receiver: receiver}})
+  .then(data => {
+    res.send(data);
+  })
+  .catch(err => {
+    res.status(500).send({
+      message:
+        err.message || "Some error occurred while retrieving messages."
+    });
+  })
+}
+
 // Find a single message with an id
 exports.findOne = (req, res) => {
     const id = req.params.id;
