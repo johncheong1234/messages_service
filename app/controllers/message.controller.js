@@ -88,7 +88,11 @@ exports.findAllByName = (req,res)=>{
   var sender = req.params.name;
   var receiver = req.params.name;
   console.log(req.params.name)
-  messages.findAll({where: $or[{sender: req.params.name}, {receiver: req.params.name}]})
+  messages.findAll({where: 
+    {[Op.or] : 
+      [{sender: req.params.name}, 
+        {receiver: req.params.name}]}
+    })
   .then(data => {
     res.send(data);
   })
