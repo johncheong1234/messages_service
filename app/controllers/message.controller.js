@@ -14,40 +14,57 @@ exports.create = (req, res) => {
       return;
     }
     // Create a message
-    const message = {
-      message_text: req.body.message,
-      sender: req.body.sender,
-      receiver: req.body.receiver,
-      
-    };
-    crypto.randomBytes(8, async(err, buf) => {
-      if (err) {
-        // Prints error
-        console.log(err);
-        return;
-      }
-      // Prints random bytes of generated data
-      console.log("The random data is: "
-                 + buf.toString('hex'));
-
-      message['randomid'] = buf.toString('hex')
-      if(message['randomid']){
-        // Save message in the database
-        messages.create(message, { fields: ['message_text', 'sender','receiver','randomid'] })
-        .then(data => {
-          res.send(data);
-        })
-        .catch(err => {
-          res.status(500).send({
-            message:
-              err.message || "Some error occurred while creating the message."
-          });
-        })
-      }
-    
+    if(!req.body.randomid){
+      const message = {
+        message_text: req.body.message,
+        sender: req.body.sender,
+        receiver: req.body.receiver,
+        
+      };
+      crypto.randomBytes(8, async(err, buf) => {
+        if (err) {
+          // Prints error
+          console.log(err);
+          return;
+        }
+        // Prints random bytes of generated data
+        console.log("The random data is: "
+                   + buf.toString('hex'));
   
+        message['randomid'] = buf.toString('hex')
+        if(message['randomid']){
+          // Save message in the database
+          messages.create(message, { fields: ['message_text', 'sender','receiver','randomid'] })
+          .then(data => {
+            res.send(data);
+          })
+          .catch(err => {
+            res.status(500).send({
+              message:
+                err.message || "Some error occurred while creating the message."
+            });
+          })
+        }  
+    })
+    }else{
+      const message = {
+        message_text: req.body.message,
+        sender: req.body.sender,
+        receiver: req.body.receiver,
+        randomid: req.body.randomid
+      };
+      messages.create(message, { fields: ['message_text', 'sender','receiver','randomid'] })
+          .then(data => {
+            res.send(data);
+          })
+          .catch(err => {
+            res.status(500).send({
+              message:
+                err.message || "Some error occurred while creating the message."
+            });
+          })
+    }
     
-  })
 }
 // Retrieve all messages from the database.
 exports.findAll = (req, res) => {
