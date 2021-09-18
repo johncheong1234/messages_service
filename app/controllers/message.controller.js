@@ -5,39 +5,54 @@ const Op = db.Sequelize.Op;
 // Create and Save a new message
 exports.create = (req, res) => {
     // Validate request
-    if (!req.body.messagename) {
+    // console.log(req.body)
+    if (!req.body.message) {
       res.status(400).send({
         message: "Content can not be empty!"
       });
       return;
     }
-  
     // Create a message
     const message = {
-      messagename: req.body.messagename,
-      password: req.body.password,
-      type: req.body.type,
-      firstname: req.body.firstname
+      message: req.body.message,
+      sender: req.body.sender,
+      receiver: req.body.receiver,
+      
     };
-  
-    // Save message in the database
-    messages.create(message, { fields: ['messagename', 'password','type','firstname'] })
-      .then(data => {
-        res.send(data);
-      })
-      .catch(err => {
-        res.status(500).send({
-          message:
-            err.message || "Some error occurred while creating the message."
-        });
-      });
-  };
+    crypto.randomBytes(8, async(err, buf) => {
+      if (err) {
+        // Prints error
+        console.log(err);
+        return;
+      }
+      // Prints random bytes of generated data
+      console.log("The random data is: "
+                 + buf.toString('hex'));
 
+      message['randomid'] = buf.toString('hex')
+      if(message['randomid']){
+        // Save message in the database
+        messages.create(message, { fields: ['message', 'sender','receiver','randomid'] })
+        .then(data => {
+          res.send(data);
+        })
+        .catch(err => {
+          res.status(500).send({
+            message:
+              err.message || "Some error occurred while creating the message."
+          });
+        })
+      }
+    
+  
+    
+  })
+}
 // Retrieve all messages from the database.
 exports.findAll = (req, res) => {
-    var messagename = req.body.messagename;
-    console.log(messagename);
-    var condition = messagename ? { messagename: { [Op.like]: `%${messagename}%` } } : null;
+    var message = req.body.message;
+    console.log(message);
+    var condition = message ? { message: { [Op.like]: `%${messagename}%` } } : null;
   
     messages.findAll({ where: condition })
       .then(data => {
