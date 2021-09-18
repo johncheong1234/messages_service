@@ -138,13 +138,13 @@ exports.delete = (req, res) => {
           });
         } else {
           res.send({
-            message: `Cannot delete message with id=${id}. Maybe message was not found!`
+            message: `Cannot delete message with randomid=${randomid}. Maybe message was not found!`
           });
         }
       })
       .catch(err => {
         res.status(500).send({
-          message: "Could not delete message with id=" + id
+          message: "Could not delete message with randomid=" + randomid
         });
       });
   };
