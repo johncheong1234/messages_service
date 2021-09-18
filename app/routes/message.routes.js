@@ -22,7 +22,7 @@ module.exports = app => {
     // router.delete("/:randomid", messages.delete);
 
     // Delete a message with randomid
-    router.delete("/delete/:randomid",messages.delete);
+    router.delete("/:randomid",messages.delete);
   
     // Delete all messages
     router.delete("/", messages.deleteAll);
