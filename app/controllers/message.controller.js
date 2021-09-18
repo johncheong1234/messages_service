@@ -126,10 +126,10 @@ exports.update = (req, res) => {
 
 // Delete a message with the specified id in the request
 exports.delete = (req, res) => {
-    const id = req.params.id;
+    const randomid = req.params.randomid;
   
     message.destroy({
-      where: { id: id }
+      where: { randomid: randomid }
     })
       .then(num => {
         if (num == 1) {
