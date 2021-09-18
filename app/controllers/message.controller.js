@@ -70,7 +70,7 @@ exports.create = (req, res) => {
 exports.findAll = (req, res) => {
     var message = req.body.message;
     console.log(message);
-    var condition = message ? { message: { [Op.like]: `%${messagename}%` } } : null;
+    var condition = message ? { message: { [Op.like]: `%${message}%` } } : null;
   
     messages.findAll({ where: condition })
       .then(data => {
@@ -84,9 +84,10 @@ exports.findAll = (req, res) => {
       });
   };
 
-exports.findAllbyName = (req,res)=>{
+exports.findAllByName = (req,res)=>{
   var sender = req.params.name;
   var receiver = req.params.name;
+  console.log(req.params.name)
   messages.findAllbyName({where: {sender: sender, receiver: receiver}})
   .then(data => {
     res.send(data);
