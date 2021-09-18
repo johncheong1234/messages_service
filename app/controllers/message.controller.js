@@ -88,7 +88,7 @@ exports.findAllByName = (req,res)=>{
   var sender = req.params.name;
   var receiver = req.params.name;
   console.log(req.params.name)
-  messages.findAllByName({where: ["sender = ? AND receiver = ?", req.params.name]})
+  messages.findAllByName({where: {sender: req.params.name, receiver: req.params.name}})
   .then(data => {
     res.send(data);
   })
