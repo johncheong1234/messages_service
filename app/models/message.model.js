@@ -1,18 +1,18 @@
 module.exports = (sequelize, Sequelize) => {
-    const user = sequelize.define("user", {
-      username: {
+    const message = sequelize.define("message", {
+      message_text: {
         type: Sequelize.STRING
       },
-      type: {
+      sender: {
         type: Sequelize.STRING
       },
-      password: {
+      receiver: {
         type: Sequelize.STRING
       },
-      firstname: {
+      randomid:{
         type: Sequelize.STRING
       }
     });
   
-    return user;
+    return message;
   };
