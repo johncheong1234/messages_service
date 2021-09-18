@@ -128,7 +128,7 @@ exports.update = (req, res) => {
 exports.delete = (req, res) => {
     const randomid = req.params.randomid;
   
-    message.destroy({
+    messages.destroy({
       where: { randomid: randomid }
     })
       .then(num => {
