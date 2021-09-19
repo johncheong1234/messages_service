@@ -122,7 +122,7 @@ exports.findOne = (req, res) => {
 // Update a message by the id in the request
 exports.update = (req, res) => {
     const randomid = req.params.randomid;
-  
+    console.log(req.body)
     messages.update(req.body, {
       where: { randomid: randomid }
     })
