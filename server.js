@@ -6,7 +6,7 @@ var initial = [
   {sender: 'john',receiver: 'bob',message_text: 'Hi Bob, John here'},
   {sender: 'bob',receiver: 'john',message_text: 'Hi John, Bob here'},
   {sender: 'anne',receiver: 'tom',message_text: 'Hi Tom, Anne here'},
-  {sender: 'anne',receiver: 'john',message_text: 'Hi Anne, John here'},
+  {sender: 'anne',receiver: 'john',message_text: 'Hi John, Anne here'},
 ]
 
 const app = express(); 
