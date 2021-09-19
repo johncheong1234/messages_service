@@ -133,13 +133,13 @@ exports.update = (req, res) => {
           });
         } else {
           res.send({
-            message: `Cannot update message with id=${id}. Maybe message was not found or req.body is empty!`
+            message: `Cannot update message with randomid=${randomid}. Maybe message was not found or req.body is empty!`
           });
         }
       })
       .catch(err => {
         res.status(500).send({
-          message: "Error updating message with id=" + id
+          message: "Error updating message with randomid=" + randomid
         });
       });
   };
