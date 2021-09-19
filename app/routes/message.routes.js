@@ -16,7 +16,7 @@ module.exports = app => {
     router.get("/:id", messages.findOne);
   
     // Update a message with id
-    router.put("/:id", messages.update);
+    router.put("/:randomid", messages.update);
   
     // Delete a message with id
     // router.delete("/:randomid", messages.delete);

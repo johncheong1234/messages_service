@@ -121,10 +121,10 @@ exports.findOne = (req, res) => {
 
 // Update a message by the id in the request
 exports.update = (req, res) => {
-    const id = req.params.id;
+    const randomid = req.params.randomid;
   
-    message.update(req.body, {
-      where: { id: id }
+    messages.update(req.body, {
+      where: { randomid: randomid }
     })
       .then(num => {
         if (num == 1) {
